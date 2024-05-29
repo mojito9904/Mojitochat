@@ -12,10 +12,10 @@ connections = []            # Lista dei client
 lock = threading.Lock()     # Per permettere l'accesso simultaneo a più client
 port = 12345                # Porta 
 server_running = True       # Variabile per controllare lo stato del server
-path=""                      #il percorso del file csv
+path="/datautenti.csv"                      #il percorso del file csv
 
 ###########################################################################################
-#creiamo una classe user che è composta da un client e un nomoe dell'utente 
+#creiamo una classe user che è composta da un client e un nome dell'utente 
 class User:
     def __init__(self, name, c):            #inserisce i dati 
         self.name = name
@@ -156,10 +156,9 @@ def login(connection):
         pas = hash_password(password)                                                                         #prendiamo la password e la criptiamo 
         new_Utente = [name, pas]
         df.loc[len(df)] = new_Utente
-        df.to_csv("/home/angelo/rocca/mojitochat/datautenti.csv", index=False)                                  #salviamo le informazioni dell'utente nel csv
+        df.to_csv(path, index=False)                                  #salviamo le informazioni dell'utente nel csv
     time.sleep(0.4)
     connection.send("#END".encode())
-    print(password)
     return name                     #returniamo il nome
 
 #############################################################################################################
