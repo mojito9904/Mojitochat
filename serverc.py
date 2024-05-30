@@ -12,7 +12,7 @@ connections = []            # Lista dei client
 lock = threading.Lock()     # Per permettere l'accesso simultaneo a più client
 port = 12345                # Porta 
 server_running = True       # Variabile per controllare lo stato del server
-path="/datautenti.csv"                      #il percorso del file csv
+path="/home/angelo/rocca/capolavoro/datautenti.csv"                      #il percorso del file csv
 
 ###########################################################################################
 #creiamo una classe user che è composta da un client e un nome dell'utente 
@@ -116,7 +116,8 @@ def login(connection):
     name = connection.recv(1024).decode()                                   #decodificiamo il nome dell'utente 
     for user in Utenti.values():                                            #ciclo per prendere tutti i nomi negli utenti online 
         if user == name:                                                    #se il nome è gia online
-            connection.send("utente già online".encode())                   
+            connection.send("utente già online".encode()) 
+            time.sleep(0.2)                  
             connection.send("non fare il furbetto".encode())                    
             time.sleep(0.4)
             connection.send("nope".encode())                                #mandiamo un avvisso 
@@ -145,6 +146,7 @@ def login(connection):
                 time.sleep(0.4)
         if tentativi==3:
             connection.send("tentativi finiti".encode()) 
+            time.sleep(0.3)
             connection.send("nope".encode())                                #mandiamo un avvisso 
             return "nope"
     else:
