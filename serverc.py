@@ -12,7 +12,7 @@ connections = []            # Lista dei client
 lock = threading.Lock()     # Per permettere l'accesso simultaneo a più client
 port = 12345                # Porta 
 server_running = True       # Variabile per controllare lo stato del server
-path="/home/angelo/rocca/capolavoro/datautenti.csv"                      #il percorso del file csv
+path=""                      #il percorso del file csv
 
 ###########################################################################################
 #creiamo una classe user che è composta da un client e un nome dell'utente 
